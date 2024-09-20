@@ -1,4 +1,4 @@
-import {} from '../Repository/musicaRepository.js'
+import { consultarMusica } from '../../repository/musicaRepository.js'
 
 export default async function consultarMusicaService(){
 

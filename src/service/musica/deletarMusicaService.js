@@ -1,4 +1,4 @@
-import { deletarMusica } from "../Repository/musicaRepository";
+import { deletarMusica } from "../../repository/musicaRepository.js";
 
 export default async function deletarMusicaService(id){
 

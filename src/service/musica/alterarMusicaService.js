@@ -1,4 +1,4 @@
-import { alterarMusica } from '../Repository/musicaRepository.js';
+import { alterarMusica } from '../../repository/musicaRepository.js';
 
 export default async function alterarMusicaService(musica, id){
 
@@ -9,4 +9,5 @@ export default async function alterarMusicaService(musica, id){
         throw new Error('Nenhuma música alterada.');
 
     }
+    
 }
