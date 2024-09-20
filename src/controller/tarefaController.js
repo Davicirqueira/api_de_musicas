@@ -4,7 +4,11 @@ const endpoints = Router();
 import inserirTarefaService from "../service/tarefa/inserirTarefaService.js";
 import consultarTarefaService from "../service/tarefa/consultarTarefaService.js";
 import alterarTarefaService from "../service/tarefa/alterarTarefaService.js";
-import deletarTarefaService from "../service/tarefa/deletarTarefaService.js"
+import deletarTarefaService from "../service/tarefa/deletarTarefaService.js";
+
+import consultarTarefaPorIDService from "../service/tarefa/consultarTarefaPorIDService.js";
+import consultarTarefaPorOrdemService from "../service/tarefa/consultaTarefaPorOrdemService.js";
+
 
 endpoints.post('/tarefa', async (req, resp) => {
 
@@ -96,5 +100,51 @@ endpoints.delete('/tarefa/:id', async (req, resp) => {
     }
     
 })
+
+
+//Extras
+endpoints.get('/tarefa/:id', async (req, resp) => {
+
+    try {
+    
+        let id = req.params.id;
+
+        let tarefa = await consultarTarefaPorIDService(id)
+
+        resp.send(tarefa)
+
+    } 
+    catch(err) {
+        
+        resp.status(400).send({
+            erro: err.message
+        })
+
+    }
+
+})
+
+
+endpoints.get('/tarefa', async (req, resp) => {
+
+    try {
+    
+        let ordem = req.query.ordem;
+
+        let tarefa = await consultarTarefaPorOrdemService(ordem)
+
+        resp.send(tarefa)
+
+    } 
+    catch(err) {
+        
+        resp.status(400).send({
+            erro: err.message
+        })
+
+    }
+    
+})
+
 
 export default endpoints;

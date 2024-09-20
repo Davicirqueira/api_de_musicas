@@ -85,3 +85,50 @@ export async function deletarTarefa(id){
     return linhasAfetadas;
 
 }
+
+
+//extras
+export async function consultarTarefaPorID(id){
+
+    const comando = ` 
+    
+    select id_tarefa   idTarefa, 
+    ds_tarefa      nomeTarefa,
+    nr_ordem       ordem,
+    bt_finalizado  finalizado,
+    dt_cadastro    cadastro
+    from tb_tarefa
+    where id_tarefa = ?
+
+    `;
+
+    let resposta = await con.query(comando, [id]);
+
+    let registro = resposta[0];
+
+    return registro;
+    
+}
+
+
+export async function consultarTarefaPorOrdem(ordem){
+
+    const comando = `
+    
+    select id_tarefa   idTarefa, 
+    ds_tarefa      nomeTarefa,
+    nr_ordem       ordem,
+    bt_finalizado  finalizado,
+    dt_cadastro    cadastro
+    from tb_tarefa
+    where nr_ordem = ?
+    
+    `;
+
+    let resposta = await con.query(comando, [ordem]);
+
+    let registro = resposta[0];
+
+    return registro;
+
+}
