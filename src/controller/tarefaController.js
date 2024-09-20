@@ -125,25 +125,25 @@ endpoints.get('/tarefa/:id', async (req, resp) => {
 })
 
 
-endpoints.get('/tarefa', async (req, resp) => {
+endpoints.get('/tarefa/busca/ordem', async (req, resp) => {
 
     try {
     
         let ordem = req.query.ordem;
 
-        let tarefa = await consultarTarefaPorOrdemService(ordem)
+        let tarefa = await consultarTarefaPorOrdemService(ordem);
 
-        resp.send(tarefa)
+        resp.send(tarefa);
 
     } 
     catch(err) {
         
         resp.status(400).send({
-            erro: err.message
+            error: err.message
         })
 
     }
-    
+
 })
 
 

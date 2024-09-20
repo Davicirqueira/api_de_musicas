@@ -132,3 +132,4 @@ export async function consultarTarefaPorOrdem(ordem){
     return registro;
 
 }
+

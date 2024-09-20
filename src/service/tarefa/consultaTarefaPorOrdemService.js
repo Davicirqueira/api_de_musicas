@@ -1,10 +1,13 @@
 import { consultarTarefaPorOrdem } from "../../repository/tarefaRepository.js";
+import { validarTarefaUnica } from "../../validation/tarefa/validarTarefaUnica.js";
 
 export default async function consultarTarefaPorOrdemService(ordem){
 
-    let registro = await consultarTarefaPorOrdem(ordem);
+    let registros = await consultarTarefaPorOrdem(ordem);
 
-    let tarefa = registro[0]
+    validarTarefaUnica(registros)
+
+    let tarefa = registros[0]
 
     return tarefa;
 
