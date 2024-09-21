@@ -92,3 +92,56 @@ export async function deletarMusica(id){
     return linhasAfetadas;
 
 }
+
+
+//Extras
+export async function consultarMusicaPorID(id){
+
+    const comando = `
+    
+    SELECT  id_musica   id,
+	    nm_musica       nomeMusica,		
+	    ds_artista      artista,
+	    url_musica      url,
+	    dt_lancamento   lancamento,
+        hr_duracao      duracao, 
+        bt_destaque     destaque, 
+        ds_idioma       idioma
+    FROM  tb_musica  
+    where id_musica = ?
+
+    `;
+
+    let resposta = await con.query(comando, [id]);
+
+    let registros = resposta[0];
+
+    return registros;
+
+}
+
+
+export async function consultarMusicaPorIdioma(idioma){
+
+    const comando = `
+    
+    SELECT  id_musica   id,
+	    nm_musica       nomeMusica,		
+	    ds_artista      artista,
+	    url_musica      url,
+	    dt_lancamento   lancamento,
+        hr_duracao      duracao, 
+        bt_destaque     destaque, 
+        ds_idioma       idioma
+    FROM  tb_musica  
+    where ds_idioma = ?
+
+    `;
+
+    let resposta = await con.query(comando, [idioma]);
+
+    let registros = resposta[0];
+
+    return registros;
+
+}

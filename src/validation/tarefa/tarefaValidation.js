@@ -1,4 +1,3 @@
-
 export function validarTarefaUnica(registros){
 
     if(registros.length == 0){

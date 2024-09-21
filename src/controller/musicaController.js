@@ -6,6 +6,10 @@ import consultarMusicaService from "../service/musica/consultarMusicaService.js"
 import alterarMusicaService from "../service/musica/alterarMusicaService.js";
 import deletarMusicaService from "../service/musica/deletarMusicaService.js";
 
+import consultarMusicaPorIDService from "../service/musica/consultarMusicaPorIDService.js";
+import consultarMusicaPorIdiomaService from "../service/musica/consultarMusicaPorIdiomaService.js";
+
+
 endpoints.post('/musica', async (req, resp) => {
 
     try {
@@ -24,7 +28,7 @@ endpoints.post('/musica', async (req, resp) => {
     catch(err) {
         
         resp.status(400).send({
-            erro: err.message
+            error: err.message
         })
 
     }
@@ -95,6 +99,51 @@ endpoints.delete('/musica/:id', async (req, resp) => {
 
     }
     
+})
+
+
+//Extras
+endpoints.get('/musica/:id', async (req, resp) => {
+
+    try {
+    
+        let id = req.params.id;
+
+        let musica = await consultarMusicaPorIDService(id);
+
+        resp.send(musica);
+
+    } 
+    catch(err) {
+        
+        resp.status(400).send({
+            erro: err.message
+        })
+
+    }
+
+})
+
+
+endpoints.get('/musica/busca/idioma', async (req, resp) => {
+
+    try {
+    
+        let idioma = req.query.idioma;
+
+        let musica = await consultarMusicaPorIdiomaService(idioma);
+
+        resp.send(musica);
+
+    } 
+    catch(err) {
+        
+        resp.status(400).send({
+            erro: err.message
+        })
+
+    }
+
 })
 
 
